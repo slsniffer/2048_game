@@ -28,10 +28,10 @@ namespace TeamSL.TwentyFortyEight.Engine
             }
 
             _strategies = new Dictionary<Movement, Func<Cell[,], MovementStrategy>>();
-            _strategies.Add(Movement.Up, cells => new UpMovementStrategy(cells));
-            _strategies.Add(Movement.Right, cells => new RightMovementStrategy(cells));
-            _strategies.Add(Movement.Down, cells => new DownMovementStrategy(cells));
-            _strategies.Add(Movement.Left, cells => new LeftMovementStrategy(cells));
+            _strategies.Add(Movement.Up, cells => new MovementStrategy(cells, new VerticalAxeRetrival(cells), Ordering.Ascending));
+            _strategies.Add(Movement.Right, cells => new MovementStrategy(cells, new HorizontalAxeRetrival(cells), Ordering.Descending));
+            _strategies.Add(Movement.Down, cells => new MovementStrategy(cells, new VerticalAxeRetrival(cells), Ordering.Descending));
+            _strategies.Add(Movement.Left, cells => new MovementStrategy(cells, new HorizontalAxeRetrival(cells), Ordering.Ascending));
         }
 
         private void FireOnComposedEvent(short amount)

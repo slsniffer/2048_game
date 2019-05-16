@@ -34,7 +34,7 @@ namespace TeamSL.TwentyFortyEight.Tests
         [TestCase(new ushort[] { 2, 2, 0, 0 }, new ushort[] { 4, 0, 0, 0 }, true, 4)]
         [TestCase(new ushort[] { 0, 0, 0, 0 }, new ushort[] { 0, 0, 0, 0 }, false, 0)]
         [Test]
-        public void ShouldCorrectMerge(ushort[] elements, ushort[] expected, bool wasMovement, int movementAmount)
+        public void ShouldMergeCorrectly(ushort[] elements, ushort[] expected, bool wasMovement, int movementAmount)
         {
             var seq = new Sequence(elements.Length);
             foreach (var element in elements)
@@ -59,7 +59,7 @@ namespace TeamSL.TwentyFortyEight.Tests
         [TestCase(new ushort[] { 4, 0, 0, 0 }, new ushort[] { 4, 0, 0, 0 }, false)]
         [TestCase(new ushort[] { 0, 0, 0, 0 }, new ushort[] { 0, 0, 0, 0 }, false)]
         [Test]
-        public void ShouldCorrectMove(ushort[] elements, ushort[] expected, bool wasMovement)
+        public void ShouldMoveCorrectly(ushort[] elements, ushort[] expected, bool wasMovement)
         {
             var seq = new Sequence(elements.Length);
             foreach (var element in elements)

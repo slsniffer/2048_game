@@ -5,15 +5,17 @@ namespace TeamSL.TwentyFortyEight.Engine
     internal class MovementStrategy
     {
         protected Cell[,] _cells;
+        private readonly IAxeRetrival _axeRetrival;
         private readonly int[] _firstAxeOrdering;
         private readonly int[] _secondAxeOrdering;
 
         public ushort MovementAmount { get; private set; }
         public bool WasMovement { get; private set; }
 
-        protected MovementStrategy(Cell[,] cells, Ordering ordering)
+        public MovementStrategy(Cell[,] cells, IAxeRetrival axeRetrival, Ordering ordering)
         {
             _cells = cells;
+            _axeRetrival = axeRetrival;
             _firstAxeOrdering = Enumerable.Range(0, _cells.GetLength(0)).ToArray();
             _secondAxeOrdering = ordering == Ordering.Ascending ? _firstAxeOrdering : _firstAxeOrdering.Reverse().ToArray();
         }
@@ -27,7 +29,7 @@ namespace TeamSL.TwentyFortyEight.Engine
 
                 foreach (var secondAxeIndex in _secondAxeOrdering)
                 {
-                    seq.Append(Getter(firstAxeIndex, secondAxeIndex).Value);
+                    seq.Append(_axeRetrival.Getter(firstAxeIndex, secondAxeIndex).Value);
                 }
 
                 seq.Merge();
@@ -37,7 +39,7 @@ namespace TeamSL.TwentyFortyEight.Engine
 
                 foreach (var secondAxeIndex in _secondAxeOrdering)
                 {
-                    Getter(firstAxeIndex, secondAxeIndex).SetValue(elements.Dequeue());
+                    _axeRetrival.Getter(firstAxeIndex, secondAxeIndex).SetValue(elements.Dequeue());
                 }
 
                 MovementAmount += seq.MovementAmount;
@@ -45,11 +47,6 @@ namespace TeamSL.TwentyFortyEight.Engine
                 if (seq.WasMovement)
                     WasMovement = true;
             }
-        }
-
-        protected virtual ref Cell Getter(int firstAxeIndex, int secondAxeIndex)
-        {
-            return ref _cells[firstAxeIndex, secondAxeIndex];
         }
     }
 }

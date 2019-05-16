@@ -39,20 +39,17 @@
     <Compile Include="Board.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="CellsExtensions.cs" />
-    <Compile Include="DownMovementStrategy.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="HorizontalMovementStrategy.cs" />
-    <Compile Include="LeftMovementStrategy.cs" />
+    <Compile Include="HorizontalAxeRetrival.cs" />
+    <Compile Include="IAxeRetrival.cs" />
     <Compile Include="Movement.cs" />
     <Compile Include="MovementComposingEventArgs.cs" />
     <Compile Include="MovementStrategy.cs" />
     <Compile Include="Ordering.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomAllocator.cs" />
-    <Compile Include="RightMovementStrategy.cs" />
     <Compile Include="Sequence.cs" />
-    <Compile Include="UpMovementStrategy.cs" />
-    <Compile Include="VerticalMovementStrategy.cs" />
+    <Compile Include="VerticalAxeRetrival.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
