@@ -27,7 +27,7 @@ namespace TeamSL.TwentyFortyEight.Engine
                 }
             }
 
-            _strategies = new Dictionary<Movement, Func<Cell[,], MovementStrategy>>();
+            _strategies = new Dictionary<Movement, Func<Cell[,], MovementStrategy>>(4);
             _strategies.Add(Movement.Up, cells => new MovementStrategy(cells, new VerticalAxeRetrival(cells), Ordering.Ascending));
             _strategies.Add(Movement.Right, cells => new MovementStrategy(cells, new HorizontalAxeRetrival(cells), Ordering.Descending));
             _strategies.Add(Movement.Down, cells => new MovementStrategy(cells, new VerticalAxeRetrival(cells), Ordering.Descending));
@@ -66,6 +66,19 @@ namespace TeamSL.TwentyFortyEight.Engine
                 Cells = _previousCells;
                 FireOnComposedEvent((short) (_previousAmount * -1));
             }
+        }
+
+        internal bool HasMovement()
+        {
+            foreach (var movement in _strategies.Keys)
+            {
+                var strategy = _strategies[movement]((Cell[,]) Cells.Clone());
+                strategy.Proceed();
+                if (strategy.WasMovement)
+                    return true;
+            }
+
+            return false;
         }
     }
 }

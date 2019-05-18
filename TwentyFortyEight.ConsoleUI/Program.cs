@@ -7,7 +7,8 @@ namespace TeamSL.TwentyFortyEight.ConsoleUI
     class Program
     {
         private static Game _game;
-        private static readonly Dictionary<ConsoleKey, Action> _actions = new Dictionary<ConsoleKey, Action>
+
+        private static readonly Dictionary<ConsoleKey, Action> _actions = new Dictionary<ConsoleKey, Action>(5)
         {
             {ConsoleKey.UpArrow, () => _game.Move(Movement.Up)},
             {ConsoleKey.RightArrow, () => _game.Move(Movement.Right)},
@@ -21,10 +22,17 @@ namespace TeamSL.TwentyFortyEight.ConsoleUI
             _game = new Game(4);
             _game.Run();
 
+            var painter = new Painter(new ColorSchema());
+
             do
             {
-                var drawer = new Drawer(new ColorSchema());
-                drawer.Draw(_game);
+                painter.Draw(_game);
+
+                if (_game.IsGameOver())
+                {
+                    painter.DrawDead();
+                    break;
+                }
 
                 var pressedKey = Console.ReadKey();
 
@@ -32,6 +40,10 @@ namespace TeamSL.TwentyFortyEight.ConsoleUI
                 {
                     _actions[pressedKey.Key]();
                 }
+            } while (true);
+
+            do
+            {
             } while (true);
         }
     }

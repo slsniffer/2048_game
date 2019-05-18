@@ -45,5 +45,10 @@ namespace TeamSL.TwentyFortyEight.Engine
         {
             Board.Undo();
         }
+
+        public bool IsGameOver()
+        {
+            return !Board.HasMovement();
+        }
     }
 }
