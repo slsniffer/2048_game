@@ -11,6 +11,7 @@ namespace TeamSL.TwentyFortyEight.Tests
         {
             var seq = new Sequence(2);
             Assert.AreEqual(2, seq.Elements.Capacity);
+            Assert.AreEqual(0, seq.Elements.Count);
         }
 
         [Test]

@@ -4,7 +4,7 @@ namespace TeamSL.TwentyFortyEight.Engine
 {
     internal class MovementStrategy
     {
-        protected Cell[,] _cells;
+        private readonly Cell[,] _cells;
         private readonly IAxeRetrival _axeRetrival;
         private readonly int[] _firstAxeOrdering;
         private readonly int[] _secondAxeOrdering;

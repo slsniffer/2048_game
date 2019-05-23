@@ -9,7 +9,7 @@ namespace TeamSL.TwentyFortyEight.Engine
         private bool _isRunning;
         private readonly RandomAllocator _randomAllocator;
 
-        public Game(int size)
+        public Game(ushort size)
         {
             Score = 0;
             Board = new Board(size);

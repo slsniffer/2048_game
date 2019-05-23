@@ -15,7 +15,7 @@ namespace TeamSL.TwentyFortyEight.Engine
 
         internal event EventHandler<MovementComposingEventArgs> OnComposed;
 
-        internal Board(int size)
+        internal Board(ushort size)
         {
             Cells = new Cell[size, size];
 
